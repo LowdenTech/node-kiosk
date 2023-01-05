@@ -1,0 +1,70 @@
+<div class="container d-flex justify-content-center">
+    <div class="row">
+        <div class="col text-center">
+            <h1>Setup</h1>
+            <div class="my-3">
+                <h3>Choose a Category</h3>
+                <div class="row toggle-group my-3" name="category">
+
+                </div>
+            </div>
+            <div id="submit" class="my-3" hidden>
+                <button class="btn btn-primary" onclick="submit()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    var selections = {}
+
+    var data = data
+
+    $(document).ready(() => {
+        $('.toggle-group').on('click', '.toggle', (e) => {
+            let group = e.delegateTarget
+            let target = e.target
+            toggleInGroup(group)
+            toggleButton(target, 'on')
+            selections[group.attributes.name.value] = e.target.innerHTML
+            showNextViewFor(data)
+        })
+        showNextViewFor(data)
+    })
+
+    function toggleInGroup(group) {
+        if (group.children.length != 0) {
+            for (child of group.children) {
+                toggleInGroup(child)
+            }
+        } else {
+            toggleButton(group, 'off')
+        }
+    }
+
+    function toggleButton(btn, state) {
+        if (state == 'on') {
+            btn.classList.remove('btn-secondary')
+            btn.classList.add('btn-primary')
+        } else if (state == 'off') {
+            btn.classList.remove('btn-primary')
+            btn.classList.add('btn-secondary')
+        } else {
+            if (btn.classList.contains('btn-primary')) {
+                btn.classList.remove('btn-primary')
+                btn.classList.add('btn-secondary')
+            } else {
+                btn.classList.remove('btn-secondary')
+                btn.classList.add('btn-primary')
+            }
+        }
+    }
+
+    function showNextViewFor(category) {
+    }
+
+    function submit() {
+
+    }
+
+</script>

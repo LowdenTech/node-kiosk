@@ -37,15 +37,37 @@
         </div>
     </section>
 {{/with}}
-{{#with alternates}}
 <section class="py-5 bg-light">
-    <div class="container px-4 px-lg-5 mt-5">
+    <div class=" px-4 px-lg-5 mt-5">
         <h2 class="fw-bolder mb-4">Related products</h2>
-        <div id="alt-products" class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            {{#each products}}
-                {{> card item=this}}
-            {{/each}}
+        <div id="pagination" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+            <div class="d-flex flex-row align-items-center">
+                <button class="btn btn-primary mx-3" type="button" data-bs-target="#pagination" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </button>
+                <div class="carousel-inner">
+                    {{#each pages}}
+                        <div id="page{{@index}}" class="carousel-item container">
+                            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                                {{#each this}}
+                                    {{> card item=this}}
+                                {{/each}}
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+                <button class="btn btn-primary mx-3" type="button" data-bs-target="#pagination" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </button>
+            </div>
         </div>
     </div>
 </section>
-{{/with}}
+<script>
+
+    $(document).ready(() => {
+        let element = $('#page0')
+        element.addClass('active')
+    })
+
+</script>
